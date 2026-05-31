@@ -1,0 +1,13 @@
+#sidebar-menu .has-dropdown:after {
+    content: "\f0143";
+    font-family: "Material Design Icons";
+    display: block;
+    float: right;
+    transition: transform 0.2s;
+    font-size: 1rem;
+}
+.sidebar-enable.vertical-collpsed #sidebar-menu .has-dropdown:after {
+    content: none!important;
+    display: none!important;
+}
+

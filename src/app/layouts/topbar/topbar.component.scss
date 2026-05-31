@@ -1,0 +1,28 @@
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap');
+
+ .animate-charcter {
+     background: rgb(2, 0, 36);
+     background-image: linear-gradient(to left bottom, #aac4ec, #4486ff, #00e8e7, #ffffff, #f38080);
+     background-size: 200% auto;
+     color: #fff;
+     background-clip: text;
+     text-fill-color: transparent;
+     -webkit-background-clip: text;
+     -webkit-text-fill-color: transparent;
+     -webkit-animation: 2s linear infinite textclip;
+     animation: 2s linear infinite textclip;
+     display: inline-block;
+     font-size: 30px;
+     font-family: 'Bebas Neue', sans-serif;
+     letter-spacing: 3px;
+ }
+
+.navbar-header {
+    background: linear-gradient(-145deg, rgba(255,255,255,0.0)10%, rgba(255,255,255,0.2)20%, rgba(19,27,67,1)70%), linear-gradient(145deg, rgba(150,150,255,0.0)80%, rgba(60,111,162,0.8)20%), linear-gradient(125deg, rgba(255,255,255,0.0)70%, rgba(60,111,190,0.7)30%), linear-gradient(-200deg, rgba(60,111,180,0.9)60%, rgba(60,111,190,0.8)40%) !important;
+}
+
+ @keyframes textclip {
+    to {
+        background-position: 200% center;
+    }
+}

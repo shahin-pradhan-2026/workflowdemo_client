@@ -1,0 +1,27 @@
+
+// dropdown
+p{
+    font-size: 14px;
+}
+.dropdown-toggle {
+    &:after {
+        display: none;        
+    }
+}
+
+.btn-sm {
+    padding: 6px 10px;
+    border: 1px solid transparent;
+}
+.btn-success {
+    background-color: #04891a;
+    border-color: #037416;
+}
+.btn-info {
+    background-color: #1e79b9;
+    border-color: #0d63a1;
+}
+.btn-primary {
+    background-color: #0625bb;
+    border-color: #0721a3;
+}

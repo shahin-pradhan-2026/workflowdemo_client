@@ -1,0 +1,74 @@
+<!-- ==========Notice Add Modal======== -->
+
+<ng-template #modalNotice let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title" id="modal-basic-title">Notice</h4>
+  </div>
+  <div class="modal-body">
+    <div class="col-md-12">
+      <div class="mb-2 row">
+        <label for="noticeDate" class="col-md-3 col-form-label">Notice Date</label>
+        <div class="col-md-9">
+          <input id="noticeDate" class="form-control" type="date" [(ngModel)]="selectedNotice.noticeDate">
+        </div>
+      </div>
+
+      <div class="mb-2 row">
+        <label for="noticeTitle" class="col-md-3 col-form-label">Notice Title</label>
+        <div class="col-md-9">
+          <input id="noticeTitle" class="form-control" type="text" [(ngModel)]="selectedNotice.noticeTitle">
+        </div>
+      </div> 
+      
+      <div class="mb-2 row">
+        <label for="noticeDescription" class="col-md-3 col-form-label">Notice Description</label>
+        <div class="col-md-9">
+          <ckeditor [editor]="Editor" data=""></ckeditor>
+          <!-- <input id="noticeDescription" class="form-control" type="text" [(ngModel)]="selectedNotice.noticeDescription"> -->
+        </div>
+      </div>
+      <div class="mb-2 row">
+        <label for="noticeFile" class="col-md-3 col-form-label">Notice File</label>
+        <div class="col-md-9">
+          <input id="noticeFile" class="form-control" type="file" [(ngModel)]="selectedNotice.noticeFile">
+        </div>
+      </div>
+      <div class="mb-2 row">
+        <label for="Status" class="col-md-3 col-form-label">Status</label>
+        <div class="col-md-9">
+          <div class="form-check form-switch form-switch-md mb-3">
+            <input class="form-check-input" type="checkbox" [(ngModel)]="selectedNotice.isActive"
+              id="Status" checked>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-danger" (click)="modalClose()"><i class="fas fa-times"></i>
+      Close</button>
+    <button type="button" class="btn btn-success" (click)="saveNotice()"><i class="fas fa-save"></i>
+      Save</button>
+  </div>
+</ng-template>
+<!-- ==========Notice Add Modal======== -->
+
+<div class="container-fluid">
+  <app-page-title title="Notice List"></app-page-title>
+  <div class="row">
+    <div class="col-md-10 my-1">
+      <button (click)="addNotice()" class="btn btn-success me-1"><i class="fa fa-plus"></i> Add New</button>
+      <!-- <button *ngIf="selectedNotice.countryID > 0" (click)="editNotice()" class="btn btn-primary mx-1"><i
+          class="fa fa-edit"></i> Edit Notice</button> -->
+      <!-- <button (click)="updateOrder()" class="btn btn-dark mx-1"><i class="fa fa-check"></i> Update Order</button> -->
+      <button (click)="onBtnExport()" class="btn btn-outline-info mx-1"><i class="fas fa-file-excel"></i> Excel</button>
+    </div>
+
+    <div class="col-lg-12">
+      <ag-grid-angular style="width: 100%; height: 75vh;" class="ag-theme-alpine" [rowData]="lstNotice"
+        [columnDefs]="columnDefs" [gridOptions]="gridOptions" (selectionChanged)="onSelect()"
+        (gridReady)="onGridReady($event)">
+      </ag-grid-angular>
+    </div>
+  </div>
+</div>

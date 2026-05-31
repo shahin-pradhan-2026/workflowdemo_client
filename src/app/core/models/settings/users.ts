@@ -1,0 +1,42 @@
+export class Users {
+    userAutoID: number;
+    userID: string;
+    userCode: string;
+    userTypeID: number;
+    userRoleID: number;
+    organizationID: number;
+    departmentID: number | null;
+    designationID: number | null;
+    userFullName: string;
+    userFullNameBangla : string;
+    mobileNo: string;
+    address: string;
+    password: string;
+    newPassword: string;
+    confirmPassword: string;
+    passwordExpiryDate: string | null;
+    status: number;
+    email: string;
+    userImage: string;
+    signature: string;
+    lastLatitude: number | null;
+    lastLongitude: number | null;
+    is2FAauthenticationEnabled: boolean | null;
+    nid: string;
+    canChangeOwnPassword: boolean | null;
+    mobileVerification: boolean | null;
+    departmentName: string;
+    departmentNameBangla: string;
+    designationName: string;
+    designationNameBangla: string;
+
+    userImagePreview: any;
+    signaturePreview: any;
+    iMIE: string;
+    macAddress: string;
+    organizationName: string;
+    userRoleName : string;
+    statusStr: string;
+    parentUserAutoID: number;
+    isTeamLead: boolean | null;
+}

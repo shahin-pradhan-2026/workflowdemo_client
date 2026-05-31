@@ -1,0 +1,35 @@
+export class Dashboard {
+    crimeCategoryName: string;
+    newComplain: number;
+    inAction: number;
+    resolved: number;
+    unImportant: number;
+    totalNewComplain: number;
+    totalInAction: number;
+    totalResolved: number;
+    totalUnImportant: number;
+    pendingComplain: number;
+    overdue: number;
+    totalPendingComplain:number;
+    totalOverdue:number;
+    totalComplain:number;
+    crimeCatID:number;
+    january:number;
+    february:number;
+    march:number;
+    april:number;
+    may:number;
+    june:number;
+    july:number;
+    august:number;
+    september:number;
+    october:number;
+    november:number;
+    december:number;
+    year:number;
+    crimeCatName:string;
+    name:string;
+    data:string;
+  dataValues: number[];
+  departmentID:number;
+}

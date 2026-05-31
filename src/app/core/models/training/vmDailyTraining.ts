@@ -1,0 +1,33 @@
+export class VMDailyTraining {
+    trainingScheduleDetailID: number;
+    trainingScheduleID: number;
+    batchNo: number;
+    startDate: string;
+    endDate: string;
+    sLNo: number;
+    trainingScheduleDetailNotes: string;
+    trainingCenterID: number;
+    tsTrainingCourseID: number;
+    trainingCategoryID: number;
+    trainingSessionID: number;
+    ageFrom: number;
+    ageTo: number;
+    durationNumber: number;
+    batchQty: number;
+    traineeQty: number;
+    maleQty: number;
+    femaleQty: number;
+    requirements: string;
+    trainingCourseID: number;
+    trainingScheduleNotes: string;
+    trainingCourseName: string;
+    trainingCourseNameBangla: string;
+    trainingCourseCode: string;
+    orderNo: number;
+    trainingCategoryName: string;
+    presentQty: number;
+    notes: string;
+    customTrainingCourseName:string;
+    dailyReportTrainingInfoID : number;
+    dailyReportID: number;
+}

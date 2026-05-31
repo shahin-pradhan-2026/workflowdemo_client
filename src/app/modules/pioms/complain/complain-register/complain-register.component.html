@@ -1,0 +1,194 @@
+<div class="container-fluid my-1">
+  <app-page-title title="{{labelPageTitle}}"></app-page-title>
+  <ngb-accordion #acc="ngbAccordion" activeIds="panelBasic" class="shadow-sm">
+
+   <!-- 🔹 Basic Information -->
+
+<ngb-panel id="panelBasic">
+  <ng-template ngbPanelHeader>
+    <button ngbPanelToggle class="accordion-button text-white w-100 text-start">
+      <i class="fas fa-file-alt me-2"></i> Basic Information
+    </button>
+  </ng-template>
+  <ng-template ngbPanelContent>
+    <div class="rounded-bottom">
+
+      <!-- Row 1: Request Title, Requestor Status, Sponsorship Type -->
+      <div class="row">
+        <div class="col-md-4 mb-2">
+          <label>Request Title</label>
+          <input type="text" class="form-control" [(ngModel)]="objComplainDetails.title">
+        </div>
+        <div class="col-md-4 mb-2">
+          <label>Requestor Status</label>
+          <select class="form-select" [(ngModel)]="objComplainDetails.applicationStatusID">
+            <option [value]="0">Select one</option>
+            <option *ngFor="let status of lstApplicationStatus" [value]="status.applicationStatusID">
+              {{status.applicationStatusName}}
+            </option>
+          </select>
+        </div>
+        <div class="col-md-4 mb-2">
+          <label>Sponsorship Type</label>
+          <select class="form-select" [(ngModel)]="objComplainDetails.sponsorshipTypeId">
+            <option [value]="0">Select Type</option>
+            <option *ngFor="let type of lstSponsorshipTypes" [value]="type.sponsorshipTypeId">
+              {{type.name}}
+            </option>
+          </select>
+        </div>
+      </div>
+
+      <!-- Row 2: Event / Organisation Name, Event Date, Requested Amount -->
+      <div class="row">
+        <div class="col-md-4 mb-2">
+          <label>Event / Organisation Name</label>
+          <input type="text" class="form-control" [(ngModel)]="objComplainDetails.eventName">
+        </div>
+        <div class="col-md-4 mb-2">
+          <label>Event Date</label>
+         <input type="date" class="form-control" [(ngModel)]="objComplainDetails.eventDate">
+
+        </div>
+        <div class="col-md-4 mb-2">
+          <label>Requested Amount</label>
+          <input type="number" class="form-control" [(ngModel)]="objComplainDetails.requestedAmount">
+        </div>
+      </div>
+
+<!-- Row 3: Purpose / Justification + Remarks -->
+<div class="row">
+  <div class="col-md-6 mb-2">
+    <label>Purpose / Justification</label>
+    <textarea class="form-control" [(ngModel)]="objComplainDetails.purpose" rows="3"></textarea>
+  </div>
+
+  <div class="col-md-6 mb-2">
+    <label>Remarks (applicable for manager and finance admin)</label>
+    <textarea class="form-control"
+              [(ngModel)]="objComplainDetails.remarks"
+              rows="3"
+              [disabled]="!(currentUserRoleId === 11 || currentUserRoleId === 4)">
+    </textarea>
+  </div>
+</div>
+
+
+
+      <!-- Department commented out -->
+      <!--
+      <div class="col-md-4 mb-2">
+        <label>Department</label>
+        <input type="text" class="form-control" [(ngModel)]="objComplainDetails.mainUnitName">
+      </div>
+      -->
+
+    </div>
+  </ng-template>
+</ngb-panel>
+
+
+    <!-- 🔹 Optional Fields -->
+    <ngb-panel id="panelOptional">
+      <ng-template ngbPanelHeader>
+        <button ngbPanelToggle class="accordion-button text-white w-100 text-start">
+          <i class="fa fa-plus me-2"></i> Optional Fields
+        </button>
+      </ng-template>
+      <ng-template ngbPanelContent>
+        <div class="rounded-bottom">
+          <div class="row">
+            <div class="col-md-6 mb-2">
+              <label>Expected Business Benefit</label>
+              <textarea class="form-control" [(ngModel)]="objComplainDetails.notes" rows="3"></textarea>
+            </div>
+            <div class="col-md-6 mb-2">
+              <label>Remarks</label>
+              <textarea class="form-control" [(ngModel)]="objComplainDetails.renarks" rows="3"></textarea>
+            </div>
+          </div>
+        </div>
+      </ng-template>
+    </ngb-panel>
+
+    <!-- 🔹 Attachments -->
+    <ngb-panel id="panelAttachments">
+      <ng-template ngbPanelHeader>
+        <button ngbPanelToggle class="accordion-button text-white w-100 text-start">
+          <i class="fa fa-file me-2"></i> Attachments
+        </button>
+      </ng-template>
+      <ng-template ngbPanelContent>
+        <div class="rounded-bottom mb-2">
+          <div class="row">
+            <label class="col-md-1">Attachment</label>
+            <div class="col-md-3">
+              <input type="file" class="form-control" (change)="onFileSelected($event)" />
+            </div>
+            <div class="col-md-2">
+              <select class="form-select" [(ngModel)]="attachmentTypeID">
+                <option value="0">Attachment Type</option>
+                <option value="1">Image</option>
+                <option value="2">Document</option>
+                <option value="3">Audio</option>
+                <option value="4">Video</option>
+              </select>
+            </div>
+            <div class="col-md-5">
+              <input type="text" class="form-control" [(ngModel)]="attachmentDescription" placeholder="Description" />
+            </div>
+            <div class="col-md-1">
+              <button class="btn-sm btn-primary btn-theme" (click)="uploadFile()" [disabled]="!selectedFile">
+                <i class="fa fa-upload"></i> Add
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <div class="table-responsive mt-2">
+          <table class="table table-bordered table-striped table-hover">
+            <thead class="thead-dark">
+              <tr>
+                <th>File Name</th>
+                <th>Attachment Type</th>
+                <th>File Format</th>
+                <th>Upload Date</th>
+                <th>Description</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let file of lstAttachment; let i = index">
+                <td>{{ file.AttachmentName }}</td>
+                <td class="text-center">{{ getTypeNameByID(file.AttachementTypeID)}}</td>
+                <td class="text-center">{{ file.FileFormat }}</td>
+                <td class="text-center">{{ file.CreatedDate | date: 'dd-MM-yyyy' }}</td>
+                <td>{{file.Description}}</td>
+                <td class="text-center">
+                  <button class="btn btn-sm btn-danger" (click)="removeFile(i)">
+                    <i class="fa fa-trash"></i> Delete
+                  </button>
+                </td>
+              </tr>
+              <tr *ngIf="lstAttachment.length === 0">
+                <td colspan="6" class="text-center text-muted py-3">
+                  No files uploaded yet.
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </ng-template>
+    </ngb-panel>
+  </ngb-accordion>
+
+  <!-- 🔹 Save Area -->
+  <div class="col-md-12 text-end mt-1">
+    <button (click)="saveComplain()" class="btn btn-primary btn-theme me-3">
+      <i class="fa fa-save"></i> Save Request
+    </button>
+    <button type="button" class="btn btn-warning">
+      <i class="fa fa-undo"></i> Clear
+    </button>
+  </div>
+</div>

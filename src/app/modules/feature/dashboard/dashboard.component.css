@@ -1,0 +1,104 @@
+.welcome-image {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+}
+
+.welcome-image img {
+    width: 100%;
+}
+
+.welcome-text {
+    font-size: 32px;
+    color: #fff;
+    padding: 20px;
+}
+
+.border-radius-table {
+    border: 1px solid #abaaaa;
+    border-radius: 15px;
+    background: #fff;
+}
+
+.complain-table-data table.table tr th {
+    background: #fff !important;
+    color: #000;
+    text-align: center;
+}
+
+.mini-card-group {
+    margin-top: 40px;
+}
+
+.card.mini-stats-wid img {
+    width: 60px;
+}
+
+.table-height-auto {
+    height: 250px;
+}
+
+.table-height-auto thead tr {
+    position: sticky;
+    top: 0;
+    width: 100%;
+}
+
+.chartData {
+    background: #fff;
+    border: 1px solid #bfbfbf;
+    border-radius: 15px;
+    margin-top: 20px;
+    padding: 20px 10px;
+}
+
+.dsb-table td {
+    font-size: 16px;
+}
+
+.card.mini-stats-wid h4 {
+    font-size: 14px;
+    color: #000;
+}
+
+@media screen and (min-width: 1200px) and (max-width: 1600px) {
+    .mini-card-group {
+        margin-top: -15px;
+    }
+
+    .card.mini-stats-wid img {
+        width: 40px;
+    }
+
+    .card.mini-stats-wid h4 {
+        font-size: 14px;
+        color: #000;
+    }
+
+
+}
+
+@media screen and (min-width: 1601px) and (max-width: 2100px) {
+
+    .card.mini-stats-wid h4 {
+        font-size: 16px;
+        color: #000 !important;
+        /* font-weight: 600; */
+    }
+}
+
+.clickable {
+    color: blue;
+    /* Color of a link */
+    text-decoration: none;
+    /* Underline to mimic a link */
+    cursor: pointer;
+    /* Cursor changes to pointer on hover */
+    text-align: center;
+}
+
+.clickable:hover {
+    color: darkblue;
+    /* Darker color on hover */
+}

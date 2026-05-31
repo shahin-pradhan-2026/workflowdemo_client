@@ -1,0 +1,154 @@
+<!-- ==========AgentReport Add Modal======== -->
+
+<ng-template #modalAgentReport let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title" id="modal-basic-title">AgentReport Information</h4>
+  </div>
+  <div class="modal-body">
+    <div class="col-md-12">
+      
+      <div class="mb-2 row">
+        <label for="complainID" class="col-md-5 col-form-label">Report Date</label>
+        <div class="col-md-7">
+          <input id="complainID" class="form-control" type="text"
+            [(ngModel)]="selectedAgentReport.reportDate">
+        </div>
+      </div>
+      <div class="mb-2 row">
+        <label for="agentName" class="col-md-5 col-form-label">Agent Name</label>
+        <div class="col-md-7">
+          <input id="agentName" class="form-control" type="text"
+            [(ngModel)]="selectedAgentReport.agentName">
+        </div>
+      </div>
+      <div class="mb-2 row">
+        <label for="complainID" class="col-md-5 col-form-label">Complain ID</label>
+        <div class="col-md-7">
+          <input id="complainID" class="form-control" type="text"
+            [(ngModel)]="selectedAgentReport.complainID">
+        </div>
+      </div>
+      <div class="mb-2 row">
+        <label for="accusedBP" class="col-md-5 col-form-label">Accused BP</label>
+        <div class="col-md-7">
+          <input id="accusedBP" class="form-control" type="text"
+            [(ngModel)]="selectedAgentReport.accusedBP">
+        </div>
+      </div>
+      
+      <div class="mb-2 row">
+        <label for="reportDetails" class="col-md-5 col-form-label">Report Details</label>
+        <div class="col-md-7">
+          <input id="reportDetails" class="form-control" type="text"
+            [(ngModel)]="selectedAgentReport.reportDetails">
+        </div>
+      </div>
+
+      
+      
+
+      <div class="mb-2 row">
+        <label for="Status" class="col-md-5 col-form-label">Status</label>
+        <div class="col-md-7">
+          <div class="form-check form-switch form-switch-md mb-3">
+            <input class="form-check-input" type="checkbox" [(ngModel)]="selectedAgentReport.isActive"
+              id="Status" checked>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-danger" (click)="modalClose()"><i class="fas fa-times"></i>
+      Close</button>
+    <button type="button" *ngIf="!selectedAgentReport.agentReportID" class="btn btn-success"
+      (click)="saveAgentReport()"><i class="fas fa-save"></i>
+      Save</button>
+    <button type="button" *ngIf="selectedAgentReport.agentReportID>0" class="btn btn-success"
+      (click)="updateAgentReport()"><i class="fas fa-save"></i>
+      Update</button>
+  </div>
+</ng-template>
+<!-- ==========AgentReport Add Modal======== -->
+
+<div class="container-fluid">
+  <app-page-title title="Agent Report "></app-page-title>
+  <div class="row">
+    <div class="col-md-12">
+      <div class="card mb-1">
+        <div class="card-body p-2">
+          <div class="row">
+            <div class="col-md-3">
+              <div class="mb-2 row">
+                <label for="fromDate" class="col-md-3 col-form-label text-end">From</label>
+                <div class="col-md-9">
+                  <input id="fromDate" class="form-control" type="date">
+                </div>
+              </div>
+            </div>
+            <div class="col-md-3">
+              <div class="mb-2 row">
+                <label for="toDate" class="col-md-3 col-form-label text-end">To</label>
+                <div class="col-md-9">
+                  <input id="toDate" class="form-control" type="date">
+                </div>
+              </div>
+            </div>
+            <div class="col-md-3">
+              <div class="mb-2 row">
+                <label for="toDate" class="col-md-3 col-form-label text-end">Unit</label>
+                <div class="col-md-9">
+                  <select id="toDate" class="form-select">
+                    <option value="">-- Select Unit --</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-3">
+              <div class="mb-2 row">
+                <label for="toDate" class="col-md-3 col-form-label text-end">Agent</label>
+                <div class="col-md-9">
+                  <select id="toDate" class="form-select">
+                    <option value="">-- Select Agent --</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-md-12 text-end">
+              <button (click)="filterByDate()" class="btn-sm btn-primary"><i class="fa fa-filter"></i> Filter</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-4 my-1">
+      <!-- <button (click)="addAgentReport()" class="btn btn-success me-1"><i class="fa fa-plus"></i> Add New</button> -->
+      <button *ngIf="selectedAgentReport.agentReportID > 0" (click)="editAgentReport()"
+        class="btn btn-primary mx-1"><i class="fa fa-edit"></i> Edit</button>
+      <!-- <button (click)="updateOrder()" class="btn btn-dark mx-1"><i class="fa fa-check"></i> Update Order</button> -->
+      <button (click)="onBtnExport()" class="btn btn-outline-info mx-1"><i class="fas fa-file-excel"></i> Excel</button>
+    </div>
+    <div class="col-md-8">
+      <div class="float-end">
+        <div class="d-flex gap-1 mt-2">
+          <div> Total Agent  <span class="badge bg-success p-2">2</span></div>
+          <div> Task Assign  <span class="badge bg-info p-2">0</span></div>
+          <div> Report Submit  <span class="badge bg-primary p-2">0</span></div>
+          <div> Not Submit  <span class="badge bg-secondary p-2">0</span></div>
+
+        </div>
+      </div>
+    </div>
+
+
+    <div class="col-lg-12">
+      <ag-grid-angular style="width: 100%; height: 75vh;" class="ag-theme-alpine" [rowData]="lstAgentReport"
+        [columnDefs]="columnDefs" [gridOptions]="gridOptions" (selectionChanged)="onSelect()"
+        (gridReady)="onGridReady($event)">
+      </ag-grid-angular>
+    </div>
+  </div>
+</div>

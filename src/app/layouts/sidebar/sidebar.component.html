@@ -1,0 +1,105 @@
+<!-- ========== Left Sidebar Start ========== -->
+
+<ng-template #contentTemplate>
+<div class="menu-watermark-logo">
+  <!-- <img src="../../../assets/images/pioms/" alt=""> -->
+</div>
+  <!--- Sidemenu -->
+  <div id="sidebar-menu">
+
+    <!-- Left Menu Start -->
+    <ul class="metismenu list-unstyled" id="side-menu" #sideMenu>
+
+      <!-- {{menuItems}} -->
+      <!-- Node Tree Container -->
+
+      <ng-container *ngFor="let node of lstmenuItems" [ngTemplateOutlet]="treeNode"
+        [ngTemplateOutletContext]="{ $implicit: node }">
+      </ng-container>
+      <ng-template #treeNode let-data>
+        <li>
+          <!-- href="javascript:void(0);" -->
+          <!-- routerLink="{{data.routePath}}" -->
+          <a (click)="onToggle(data)" class="is-parent" href="javascript:void(0);"
+            [ngClass]="{'has-arrow': !data.isCollapsed, 'has-dropdown': data.hasChild==true, 'link-active': data.isLinkActive==true}">
+            <i class="{{data.iconName}}" *ngIf="data.iconName"></i>
+            <span> {{ data.displayName}}</span>
+            <!-- <span class="badge rounded-pill float-end bg-{{data.badge.variant}}" *ngIf="data.isCollapsed">{{data.badge.text |
+            translate}}</span> -->
+          </a>
+
+          <!-- <a (click)="onToggle(data)" class="side-nav-link-ref"
+            routerLinkActive="active">
+            <i class="bx {{ data.iconName }}" *ngIf="data.iconName"></i>
+            <span> {{ data.displayName }}</span>
+            <span class="badge rounded-pill bg-{{data.badge.variant}} float-end" *ngIf="data.badge">{{data.badge.text
+              |
+              translate}}</span>
+          </a> -->
+        </li>
+        <ng-container *ngIf="data.childList">
+          <ul *ngIf="!data.isCollapsed">
+            <ng-container *ngFor="let child of data.childList" [ngTemplateOutlet]="treeNode"
+              [ngTemplateOutletContext]="{ $implicit: child }">
+            </ng-container>
+          </ul>
+        </ng-container>
+      </ng-template>
+      <!-- Node Tree Container -->
+      <!-- 
+      <ng-container *ngFor="let item1 of lstmenuItems; let first = first;">
+        <li class="menu-title" *ngIf="first">Menu</li>
+        <li>
+          <a *ngIf="!hasItems(item1)" (click)="collapseToggle(item1)" href="javascript:void(0);" class="is-parent"
+            [ngClass]="{'has-arrow': !item1.isCollapsed, 'has-dropdown': item1.hasChild==true}">
+            <i class="bx {{item1.iconName}}" *ngIf="item1.iconName"></i>
+            <span> {{ item1.displayName}}</span>
+          </a>
+
+          <a *ngIf="hasItems(item1)" (click)="collapseToggle(item1)" class="side-nav-link-ref"
+            routerLinkActive="active">
+            <i class="bx {{ item1.iconName }}" *ngIf="item1.iconName"></i>
+            <span> {{ item1.displayName }}</span>
+            <span class="badge rounded-pill bg-{{item1.badge.variant}} float-end" *ngIf="item1.badge">{{item1.badge.text
+              |
+              translate}}</span>
+          </a>
+
+          <ul *ngIf="item1.childList" class="sub-menu " aria-expanded="false">
+            <li *ngFor="let item2 of item1.childList">
+              <a *ngIf="!hasItems(item2)" (click)="collapseToggle(item2)" class="side-nav-link-ref"
+                [attr.data-parent]="item2.parentPermissionID" routerLinkActive="active">
+                {{ item2.displayName}}
+              </a>
+              <a *ngIf="hasItems(item2)" (click)="collapseToggle(item2)" class="side-nav-link-a-ref has-arrow"
+                href="javascript:void(0);" [attr.data-parent]="item2.parentPermissionID">
+                {{ item2.displayName}}
+              </a>
+              <ul *ngIf="hasItems(item2)" class="sub-menu mm-collapse" aria-expanded="false">
+                <li *ngFor="let item3 of item2.subItems">
+                  <a [attr.data-parent]="item3.parentPermissionID" (click)="collapseToggle(item3)"
+                    routerLinkActive="active" class="side-nav-link-ref">
+                    {{ item3.displayName }}
+                  </a>
+                </li>
+              </ul>
+            </li>
+          </ul>
+        </li>
+      </ng-container> -->
+    </ul>
+  </div>
+</ng-template>
+<!-- Sidebar -->
+
+<div class="vertical-menu">
+  <ngx-simplebar class="h-100" #componentRef>
+    <div *ngIf="!isCondensed">
+      <ng-container *ngTemplateOutlet="contentTemplate"></ng-container>
+    </div>
+    <div *ngIf="isCondensed">
+      <ng-container *ngTemplateOutlet="contentTemplate"></ng-container>
+    </div>
+  </ngx-simplebar>
+</div>
+<!-- Left Sidebar End -->

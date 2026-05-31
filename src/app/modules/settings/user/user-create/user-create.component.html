@@ -1,0 +1,397 @@
+<div class="container-fluid">
+  <app-page-title title="User Information"></app-page-title>
+  <div class="row">
+    <div class="col-lg-12">
+      <div class="card">
+        <div class="card-body">
+          <!-- <h4 class="card-title">Create User</h4> -->
+          <div class="row">
+            <div class="col-md-5">
+              <div class="row">
+                <!-- <div class="col-md-12">
+                  <div class="mb-3 row">
+                    <label for="UserType" class="col-md-3 col-form-label">User Type</label>
+                    <div class="col-md-9">
+                      <select class="form-select" id="UserType" [(ngModel)]="objUser.userTypeID">
+                        <option value="0">Select</option>
+                        <option value="1">Admin</option>
+                      </select>
+                    </div>
+                  </div>
+                </div> -->
+                <!-- <div class="col-md-12">
+                  <div class="mb-3 row">
+                    <label for="Organization" class="col-md-3 col-form-label">Training Center</label>
+                    <div class="col-md-9">
+                      <select class="form-select" id="Organization" [(ngModel)]="objUser.organizationID">
+                        <option value="0">Select</option>
+                        <option *ngFor="let oItem of lstOrganization" [value]="oItem.organizationID">
+                          {{oItem.organizationName}}</option>
+                      </select>
+                    </div>
+                  </div>
+                </div> -->
+
+                <div class="col-md-12">
+                  <div class="mb-3 row">
+                    <label for="Organization" class="col-md-3 col-form-label">Department</label>
+                    <div class="col-md-9">
+                      <!-- <select class="form-select" id="Organization" [(ngModel)]="objUser.departmentID">
+                        <option value="0">All</option>
+                        <option *ngFor="let oItem of lstDepartment" [value]="oItem.departmentID">
+                          {{oItem.departmentName}} ({{oItem.shortName}})</option>
+                      </select> -->
+
+                      <select name="departmentID" [(ngModel)]="objUser.departmentID" class="form-control" (ngModelChange)="onUserDepartmentChange($event)">
+                        <option value="0">All</option>
+                        <option *ngFor="let oItem of lstDepartment" [value]="oItem.departmentID">
+                          {{oItem.departmentNameBangla}} 
+                        </option>
+                    </select>
+                    </div>
+                  </div>
+                </div> 
+
+                <div class="col-md-12">
+                  <div class="mb-3 row">
+                    <label for="UserRole" class="col-md-3 col-form-label">User Level</label>
+                    <div class="col-md-9">
+                      <select class="form-select" id="UserRole" [(ngModel)]="objUser.userRoleID" (ngModelChange)="onUserRoleChange($event)">
+                        <option value="0">All</option>
+                        <option *ngFor="let oItem of lstUserRole" [value]="oItem.userRoleID">{{oItem.userRoleName}}
+                        </option>
+                      </select>
+                    </div>
+                  </div>
+                </div>
+                <!-- <div class="col-md-12">
+                  <div class="mb-3 row">
+                    <label for="UserRole" class="col-md-3 col-form-label">Parent User</label>
+                    <div class="col-md-9">
+                      <select class="form-select" id="UserName" [(ngModel)]="objUser.parentUserAutoID">
+                        <option value="0">Select</option>
+                        <option *ngFor="let oItem of lstParentUser" [value]="oItem.parentUserAutoID">{{oItem.userFullNameBangla}}
+                        </option>
+                      </select>
+                    </div>
+                  </div>
+                </div> -->
+               
+
+                <!-- <div class="col-md-12">
+                  <div class="mb-3 row">
+                    <label for="Organization" class="col-md-3 col-form-label">Rank</label>
+                    <div class="col-md-9">
+                      <select class="form-select" id="Organization" [(ngModel)]="objUser.designationID">
+                        <option value="0">Select</option>
+                        <option *ngFor="let oItem of lstDesignation" [value]="oItem.designationID">
+                          {{oItem.designationName}} ({{oItem.designationNameBangla}})</option>
+                      </select>
+                    </div>
+                  </div>
+                </div> -->
+                <div class="col-md-12">
+                  <div class="mb-3 row">
+                    <label for="UserID" class="col-md-3 col-form-label">User ID</label>
+                    <div class="col-md-9">
+                      <input class="form-control" type="text" value="" id="UserID" [(ngModel)]="objUser.userID"
+                        autocomplete="off">
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-12">
+                  <div class="mb-3 row">
+                    <label for="Password" class="col-md-3 col-form-label">Password</label>
+                    <div class="col-md-9">
+                      <input class="form-control" type="password" value="" id="Password" [(ngModel)]="objUser.password">
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-12">
+                  <div class="mb-3 row">
+                    <label for="PasswordExpiryDate" class="col-md-3 col-form-label">Password Expiry Date</label>
+                    <div class="col-md-9">
+                      <!-- <input class="form-control" type="date" value="" id="PasswordExpiryDate" 
+                        [(ngModel)]="objUser.passwordExpiryDate"> -->
+
+                        <input class="form-control" [owlDateTime]="completeDate" [owlDateTimeTrigger]="completeDate" placeholder="Password Expiry Date"
+                        [(ngModel)]="objUser.passwordExpiryDate">
+                        <owl-date-time [pickerType]="'calendar'" #completeDate></owl-date-time>
+                    </div>
+                  </div>
+                </div>
+                <!-- <div class="col-md-12">
+                  <div class="mb-3 row">
+                    <label for="RetypePassword" class="col-md-3 col-form-label pe-0">Confirm Password</label>
+                    <div class="col-md-9">
+                      <input class="form-control" type="password" value="" id="RetypePassword" [(ngModel)]="objUser.userTypeID">
+                    </div>
+                  </div>
+                </div> -->
+
+                <!-- <div class="col-md-12">
+                  <div class="mb-3 row">
+                    <label for="UserRole" class="col-md-3 col-form-label">User Role</label>
+                    <div class="col-md-9">
+                      <select class="form-select" id="UserRole" [(ngModel)]="objUser.userRoleID">
+                        <option value="0">Select</option>
+                        <option *ngFor="let oItem of lstUserRole" [value]="oItem.userRoleID">{{oItem.userRoleName}}
+                        </option>
+                      </select>
+                    </div>
+                  </div>
+                </div> -->
+
+                <!-- <div class="col-md-12">
+                  <div class="mb-3 row">
+                    <label for="Note" class="col-md-3 col-form-label">Note</label>
+                    <div class="col-md-9">
+                      <textarea name="" class="form-control" id="Note" [(ngModel)]="objUser.note"></textarea>
+                    </div>
+                  </div>
+                </div> -->
+
+                <!-- <div class="col-md-12">
+                  <div class="mb-3 row">
+                    <label for="LastLongitude" class="col-md-3 col-form-label">IMEI</label>
+                    <div class="col-md-9">
+                      <input class="form-control" type="text" value="" id="LastLongitude"
+                        [(ngModel)]="objUser.iMIE">
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-12">
+                  <div class="mb-3 row">
+                    <label for="LastLongitude" class="col-md-3 col-form-label">Mac Address</label>
+                    <div class="col-md-9">
+                      <input class="form-control" type="text" value="" id="LastLongitude"
+                        [(ngModel)]="objUser.macAddress">
+                    </div>
+                  </div>
+                </div> -->
+
+                <div class="col-md-12">
+                  <div class="mb-3 row">
+                    <label for="Status" class="col-md-3 col-form-label">Active</label>
+                    <div class="col-md-9">
+                      <select class="form-select" id="Status" [(ngModel)]="objUser.status">
+                        <option value="0">All</option>
+                        <option value="1">Active</option>
+                        <option value="2">In Active</option>
+                        <option value="2">Blocked</option>
+                      </select>
+                    </div>
+                  </div>
+                </div>
+                <!-- মোবাইল ভেরিফিকেশন এবং 2FA কোড আপাতত হাইড করা হল -->
+                
+                <!-- <div class="col-md-12" >
+                  <div class="mb-3 row">
+                    <label for="Is2FAauthenticationEnabled" class="col-md-3 col-form-label">Enabled 2FA</label>
+                    <div class="col-md-9">
+                      <div class="form-check form-switch form-switch-md mb-3">
+                        <input class="form-check-input" type="checkbox" [(ngModel)]="objUser.is2FAauthenticationEnabled"
+                          id="Is2FAauthenticationEnabled" checked>
+                        <label class="form-check-label" for="SwitchCheckSizemd">Is 2FA Authentication Enabled</label>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                       <div class="col-md-12">
+                  <div class="mb-3 row">
+                    <label for="MobileVerification" class="col-md-3 col-form-label">Mobile Verification</label>
+                    <div class="col-md-9">
+                      <div class="form-check form-switch form-switch-md mb-3">
+                        <input class="form-check-input" type="checkbox" [(ngModel)]="objUser.mobileVerification"
+                          id="MobileVerification" checked>
+                      </div>
+                    </div>
+                  </div>
+                </div>-->
+              
+                <div class="col-md-12">
+                  <div class="mb-3 row">
+                    <label for="IsTeamLead" class="col-md-3 col-form-label">Is TeamLead?</label>
+                    <div class="col-md-9">
+                      <div class="form-check form-switch form-switch-md mb-3">
+                        <input class="form-check-input" type="checkbox" [(ngModel)]="objUser.isTeamLead"
+                          id="IsTeamLead" checked>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-12">
+                  <div class="mb-3 row">
+                    <label for="Signature" class="col-md-3 col-form-label">Signature</label>
+                    <div class="col-md-9">
+                      <input type="file" class="form-control" name="image" (change)="onChangeImage($event,2)">
+                      <img [src]="objUser.signaturePreview" alt="" width="300px" height="80px">
+                      <button *ngIf="objUser.signaturePreview" class="btn btn-danger" (click)="removeSignature()"><i class="fa fa-trash "></i> Delete Image</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-md-1"></div>
+
+            <div class="col-md-5">
+              <div class="row">
+                <!-- <div class="col-md-12">
+                  <div class="mb-3 row">
+                    <label for="UserCode" class="col-md-3 col-form-label">BP Number</label>
+                    <div class="col-md-9">
+                      <input class="form-control" type="text" value="" id="UserCode" autocomplete="off" maxlength="20"
+                        [(ngModel)]="objUser.userCode">
+                    </div>
+                  </div>
+                </div> -->
+                <div class="col-md-12">
+                  <div class="mb-3 row">
+                    <label for="UserFullName" class="col-md-3 col-form-label">Full Name</label>
+                    <div class="col-md-9">
+                      <input class="form-control" type="text" value="" id="UserFullName"
+                        [(ngModel)]="objUser.userFullName">
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-12">
+                  <div class="mb-3 row">
+                    <label for="userFullNameBangla" class="col-md-3 col-form-label">Full Name (বাংলা)</label>
+                    <div class="col-md-9">
+                      <input class="form-control" type="text" value="" id="userFullNameBangla"
+                        [(ngModel)]="objUser.userFullNameBangla">
+                    </div>
+                  </div>
+                </div>
+                <!-- <div class="col-md-12">
+                  <div class="mb-3 row">
+                    <label for="Organization" class="col-md-3 col-form-label">Designation</label>
+                    <div class="col-md-9">
+                      <select class="form-select" id="Organization" [(ngModel)]="objUser.designationID">
+                        <option value="0">Select</option>
+                        <option value="1">Software Engineer</option>
+                        <option value="2">Database Enginner</option>
+                      </select>
+                    </div>
+                  </div>
+                </div> -->
+                <div class="col-md-12">
+                  <div class="mb-3 row">
+                    <label for="MobileNo" class="col-md-3 col-form-label">Phone / Mobile</label>
+                    <div class="col-md-9">
+                      <input class="form-control" type="text" value="" id="MobileNo" [(ngModel)]="objUser.mobileNo">
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-12">
+                  <div class="mb-3 row">
+                    <label for="MobileNo" class="col-md-3 col-form-label">Email</label>
+                    <div class="col-md-9">
+                      <input class="form-control" type="text" value="" id="MobileNo" [(ngModel)]="objUser.email">
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-12">
+                  <div class="mb-3 row">
+                    <label for="NID" class="col-md-3 col-form-label">NID</label>
+                    <div class="col-md-9">
+                      <input class="form-control" type="number" value="" id="NID" [(ngModel)]="objUser.nid">
+                    </div>
+                  </div>
+                </div>
+
+                <div class="col-md-12">
+                  <div class="mb-3 row">
+                    <label for="Address" class="col-md-3 col-form-label">Address</label>
+                    <div class="col-md-9">
+                      <textarea name="" class="form-control" id="Address" [(ngModel)]="objUser.address"></textarea>
+                    </div>
+                  </div>
+                </div>
+                <!-- <div class="col-md-12">
+                  <div class="mb-3 row">
+                    <label for="LastLatitude" class="col-md-3 col-form-label">Last Latitude</label>
+                    <div class="col-md-9">
+                      <input class="form-control" type="text" value="" id="LastLatitude"
+                        [(ngModel)]="objUser.lastLatitude">
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-12">
+                  <div class="mb-3 row">
+                    <label for="LastLongitude" class="col-md-3 col-form-label">Last Longitude</label>
+                    <div class="col-md-9">
+                      <input class="form-control" type="text" value="" id="LastLongitude"
+                        [(ngModel)]="objUser.lastLongitude">
+                    </div>
+                  </div>
+                </div> -->
+                <div class="col-md-12">
+                  <div class="mb-3 row">
+                    <label for="LastLongitude" class="col-md-3 col-form-label">User Image</label>
+                    <div class="col-md-9">
+                      <input type="file" class="form-control" name="image" (change)="onChangeImage($event,1)">
+                      <img [src]="objUser.userImagePreview" alt="" width="200px" height="200x">
+                      <button *ngIf="objUser.userImagePreview" class="btn btn-danger" (click)="removeImage()"><i class="fa fa-trash "></i> Delete Image</button>
+                    </div>
+                  </div>
+                </div>
+
+                <!--  <div class="col-md-12">
+                  <div class="mb-3 row">
+                    <label for="example-text-input" class="col-md-3 col-form-label">User Image</label>
+                    <div class="col-md-9">
+                      <input class="form-control" [(ngModel)]="objUser.userImage" (change)="imagePreview($event)" type="file" value="">
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-12">
+                  <div class="mb-3 row">
+                    <label for="example-text-input" class="col-md-3 col-form-label"></label>
+                    <div class="col-md-9">
+                      <div class="image-frame-box">
+                        <img *ngIf="objUser.userImage" src="{{imageURL}}" alt="">
+                        <img *ngIf="!objUser.userImage" src="https://www.dgvaishnavcollege.edu.in/dgvaishnav-c/uploads/2021/01/dummy-profile-pic.jpg" alt="">
+                      </div>
+                    </div>
+                  </div>
+                </div> -->
+              </div>
+              <div class="col-md-12">
+                <div class="mb-3 row">
+                  <div class="col-md-3"></div>
+                  <div class="col-md-9">
+                    <div class="text-end">
+                      <!-- <button *ngIf="!objUser.userAutoID && hasUserListAddPermission" type="button" class="btn btn-success m-1"
+                        (click)="saveUser()"><i class="fa fa-save"></i>
+                        Save
+                      </button> -->
+                      <button *ngIf="!objUser.userAutoID" type="button" class="btn btn-success m-1"
+                      (click)="saveUser()"><i class="fa fa-save"></i>
+                      Save
+                    </button>
+                      <button *ngIf="objUser.userAutoID > 0" type="button" class="btn btn-success m-1"
+                        (click)="updateUser()"><i class="fa fa-save"></i>
+                        Update
+                      </button>
+                      <button *ngIf="objUser.userAutoID > 0 && hasUserListDeletePermission" type="button" class="btn btn-danger m-1"
+                        (click)="deleteUser()"><i class="fa fa-minus"></i>
+                        Delete
+                      </button>
+                      <button type="button" class="btn btn-dark m-1" (click)="goToList()"><i
+                          class="fa fa-arrow-right"></i>
+                        Go To List
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- end row -->
+</div>

@@ -1,0 +1,72 @@
+<!-- ==========Categories Add Modal======== -->
+
+<ng-template #modalCategories let-modal>
+    <div class="modal-header">
+      <h4 class="modal-title" id="modal-basic-title">Complain Category </h4>
+    </div>
+    <div class="modal-body">
+      <div class="col-md-12">
+        <div class="mb-2 row">
+          <label for="categoriesName" class="col-md-5 col-form-label">Categories Name</label>
+          <div class="col-md-7">
+            <input id="categoriesName" class="form-control" type="text" [(ngModel)]="objCategories.categoryName" >
+          </div>
+        </div>
+        <div class="mb-2 row">
+          <label for="categoriesNameBn" class="col-md-5 col-form-label">Categories Name Bangla</label>
+          <div class="col-md-7">
+            <input id="categoriesNameBn" class="form-control" type="text" [(ngModel)]="objCategories.categoryNameBn">
+          </div>
+        </div>
+        <div class="mb-2 row">
+          <label for="isActive" class="col-md-5 col-form-label">Status</label>
+          <div class="col-md-7">
+            <div class="form-check form-switch form-switch-md mb-3">
+              <input class="form-check-input" type="checkbox" id="isActive" [(ngModel)]="objCategories.isActive">
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-danger" (click)="modalClose()"><i class="fas fa-times"></i>
+        Close</button>
+      <button type="button" (click)="save()" type="submit" *ngIf="!selectedCategories.complainCategoryID"
+         class="btn btn-success"><i class="fas fa-save"></i>
+        Save</button>
+      <button type="button" type="submit" (click)="update()" *ngIf="selectedCategories.complainCategoryID>0"
+         class="btn btn-success"><i class="fas fa-save"></i>
+        Update</button>
+    </div>
+
+</ng-template>
+<!-- ==========Categories Add Modal======== -->
+
+<div class="container-fluid">
+  <app-page-title title="Complain Category List"></app-page-title>
+
+  <div class="row">
+    <div class="col-md-12">
+      <div class="row my-2">
+        <div class="col-md-9 ">
+          <button (click)="add()" class="btn btn-success me-1"><i class="fa fa-plus"></i> Add New</button>
+          <button *ngIf="selectedCategories.complainCategoryID > 0" (click)="edit()" class="btn btn-primary mx-1"><i
+              class="fa fa-edit"></i> Edit Categories</button>
+          <button *ngIf="selectedCategories.complainCategoryID > 0" (click)="remove()" class="btn btn-danger mx-1"><i
+              class="fa fa-minus"></i> Delete Categories</button>
+          <button (click)="onBtnExport()" class="btn btn-outline-dark mx-1"><i class="fas fa-file-excel"></i>
+            Excel</button>
+        </div>
+        <div class="col-md-3 text-end">
+          <a class="btn btn-outline-info"> Total Entry <span class="badge bg-secondary p-2 mb-0">{{lstCategories.length}}</span></a>
+        </div>
+      </div>
+    </div>
+    <div class="col-lg-12">
+      <ag-grid-angular style="width: 100%; height: 75vh;" class="ag-theme-alpine" [rowData]="lstCategories"
+        [columnDefs]="columnDefs" [gridOptions]="gridOptions" (selectionChanged)="onSelect()"
+        (gridReady)="onGridReady($event)">
+      </ag-grid-angular>
+    </div>
+  </div>
+</div>

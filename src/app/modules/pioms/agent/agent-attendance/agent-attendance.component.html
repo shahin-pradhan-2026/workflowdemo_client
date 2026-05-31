@@ -1,0 +1,238 @@
+<!-- ==========AgentAttendance Add Modal======== -->
+
+<ng-template #modalAgentAttendance let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title" id="modal-basic-title">AgentAttendance Information</h4>
+  </div>
+  <div class="modal-body">
+    <div class="col-md-12">
+
+
+      <div class="mb-2 row">
+        <label for="complainID" class="col-md-5 col-form-label">Complain ID</label>
+        <div class="col-md-7">
+          <select class="form-select">
+            <option value="">Select Complain</option>
+            <option value="">Select Complain</option>
+          </select>
+        </div>
+      </div>
+      <div class="mb-2 row">
+        <label for="Dutylace" class="col-md-5 col-form-label">Duty Place</label>
+        <div class="col-md-7">
+          <input id="Dutylace" class="form-control" type="text" [(ngModel)]="selectedAgentAttendance.dutyPlace">
+        </div>
+      </div>
+      
+    </div>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-danger" (click)="modalClose()"><i class="fas fa-times"></i>
+      Close</button>
+    <button type="button" *ngIf="!selectedAgentAttendance.agentAttendanceID" class="btn btn-success"
+      (click)="saveAgentAttendance()"><i class="fas fa-save"></i>
+      Save</button>
+    <button type="button" *ngIf="selectedAgentAttendance.agentAttendanceID>0" class="btn btn-success"
+      (click)="updateAgentAttendance()"><i class="fas fa-save"></i>
+      Update</button>
+  </div>
+</ng-template>
+<!-- ==========AgentAttendance Add Modal======== -->
+<!-- ==========AgentAttendance View Modal======== -->
+
+<ng-template #modalViewAgentAttendance let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title" id="modal-basic-title">AgentAttendance Information</h4>
+  </div>
+  <div class="modal-body">
+    <div class="col-md-12">
+      <div class="mb-2 row">
+        <label for="agentName" class="col-md-3 col-form-label">Agent Name</label>
+        <div class="col-md-9">
+          <input id="agentName" class="form-control" type="text" [(ngModel)]="selectedAgentAttendance.agentID"
+            readonly>
+        </div>
+      </div>
+      <div class="mb-2 row">
+        <label for="accusedBP" class="col-md-3 col-form-label">Accused BP</label>
+        <div class="col-md-9">
+          <input id="accusedBP" class="form-control" type="text" [(ngModel)]="selectedAgentAttendance.accusedBPNumber"
+            readonly>
+        </div>
+      </div>
+
+      <div class="mb-2 row">
+        <label for="complainID" class="col-md-3 col-form-label">Complain ID</label>
+        <div class="col-md-9">
+          <input id="complainID" class="form-control" type="text" [(ngModel)]="selectedAgentAttendance.complainNo"
+            readonly>
+        </div>
+      </div>
+      <div class="mb-2 row">
+        <label for="Dutylace" class="col-md-3 col-form-label">Duty Place</label>
+        <div class="col-md-9">
+          <input id="Dutylace" class="form-control" type="text" [(ngModel)]="selectedAgentAttendance.dutyPlace"
+            readonly>
+        </div>
+      </div>
+      <div class="mb-2 row">
+        <label for="time1" class="col-md-3 col-form-label">First Attandance Time</label>
+        <div class="col-md-9">
+          <input id="time1" class="form-control" type="text" [(ngModel)]="selectedAgentAttendance.firstAttendanceTime" readonly>
+        </div>
+      </div>
+      <div class="mb-2 row">
+        <label for="gpsLocation1" class="col-md-3 col-form-label">First GPS Location </label>
+        <div class="col-md-9"> 
+          <agm-map [latitude]="selectedAgentAttendance.firstLatitude" [longitude]="selectedAgentAttendance.firstLongitude" [zoom]="zoom" [disableDefaultUI]="true" [zoomControl]="true"
+            (mapClick)="mapClicked($event)">
+            <agm-marker [latitude]="selectedAgentAttendance.firstLatitude"
+              [longitude]="selectedAgentAttendance.firstLongitude">
+              <agm-info-window>
+                <h5>Agent Information</h5>
+                <table class="table table-borderless">
+                  <tr>
+                    <td style=" width: 20px;">1</td>
+                    <td style="width: 100px;">Agent Name</td>
+                    <td style="width: 15px;">:</td>
+                    <td>{{selectedAgentAttendance.agentID}}</td>
+                  </tr>
+                  <tr>
+                    <td>2</td>
+                    <td>Agent BP</td>
+                    <td>:</td>
+                    <td>{{selectedAgentAttendance.accusedBPNumber}}</td>
+                  </tr>
+                </table>
+              </agm-info-window>
+            </agm-marker>
+          </agm-map>
+        </div>
+      </div>
+      <div class="mb-2 row">
+        <label for="time2" class="col-md-3 col-form-label">Second Attandance Time</label>
+        <div class="col-md-9">
+          <input id="time2" class="form-control" type="text" [(ngModel)]="selectedAgentAttendance.secondAttendanceTime" readonly>
+        </div>
+      </div>
+       <div class="mb-2 row">
+        <label for="gpsLocation1" class="col-md-3 col-form-label">Second Gps Location</label>
+        <div class="col-md-9"> 
+          <agm-map [latitude]="selectedAgentAttendance.secondLatitude" [longitude]="selectedAgentAttendance.secondLongitude" [zoom]="zoom" [disableDefaultUI]="true" [zoomControl]="true"
+            (mapClick)="mapClicked($event)">
+            <agm-marker [latitude]="selectedAgentAttendance.secondLatitude"
+              [longitude]="selectedAgentAttendance.secondLongitude">
+              <agm-info-window>
+                <h5>Agent Information</h5>
+                <table class="table table-borderless">
+                  <tr>
+                    <td style=" width: 20px;">1</td>
+                    <td style="width: 100px;">Agent Name</td>
+                    <td style="width: 15px;">:</td>
+                    <td>{{selectedAgentAttendance.agentID}}</td>
+                  </tr>
+                  <tr>
+                    <td>2</td>
+                    <td>Agent BP</td>
+                    <td>:</td>
+                    <td>{{selectedAgentAttendance.accusedBPNumber}}</td>
+                  </tr>
+                </table>
+              </agm-info-window>
+            </agm-marker>
+          </agm-map>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-danger" (click)="modalClose()"><i class="fas fa-times"></i>
+      Close</button>
+
+  </div>
+</ng-template>
+<!-- ==========AgentAttendance View Modal======== -->
+
+<div class="container-fluid">
+  <app-page-title title="Agent Attendance "></app-page-title>
+  <div class="row">
+    <div class="col-md-12">
+      <div class="card mb-1">
+        <div class="card-body p-2">
+          <div class="row">
+             <div class="col-md-3">
+              <div class="mb-2 row">
+                <label for="fromDate" class="col-md-4 col-form-label text-end">From</label>
+                <div class="col-md-8">
+                  <input id="fromDate" class="form-control" type="date" ([ngModel])="objQueryAttendance.fromDate">
+                </div>
+              </div>
+            </div>
+            <div class="col-md-3">
+              <div class="mb-2 row">
+                <label for="toDate" class="col-md-4 col-form-label text-end">To</label>
+                <div class="col-md-8">
+                  <input id="toDate" class="form-control" type="date" ([ngModel])="objQueryAttendance.fromDate">
+                </div>
+              </div>
+            </div>
+            <div class="col-md-3">
+              <div class="mb-2 row">
+                <label for="BPNumber" class="col-md-4 col-form-label text-end">BP Number</label>
+                <div class="col-md-8">
+                  <input id="BPNumber" class="form-control" type="text">
+                </div>
+              </div>
+            </div>
+            <div class="col-md-3">
+              <div class="mb-2 row">
+                <label for="DutyPlace" class="col-md-4 col-form-label text-end">Duty Place</label>
+                <div class="col-md-8">
+                  <input id="DutyPlace" class="form-control" type="text">
+                </div>
+              </div>
+            </div>
+            <div class="col-md-3">
+              <div class="mb-2 row">
+                <label for="ComplainID" class="col-md-4 col-form-label text-end">Complain ID</label>
+                <div class="col-md-8">
+                  <input id="ComplainID" class="form-control" type="text">
+                </div>
+              </div>
+            </div>
+            <div class="col-md-3">
+              <button (click)="filterByDate()" class="btn-sm btn-primary"><i class="fa fa-filter"></i> Filter</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-4 my-1">
+      <!-- <button (click)="addAgentAttendance()" class="btn btn-success me-1"><i class="fa fa-plus"></i> Add New</button> -->
+      <!-- <button  (click)="editAgentAttendance()" class="btn btn-primary mx-1"><i class="fa fa-edit"></i> Edit </button> -->
+      <button *ngIf="selectedAgentAttendance.agentAttendanceID > 0" (click)="viewAgentAttendance()"
+        class="btn btn-primary mx-1"><i class="fa fa-eye"></i> View </button>
+      <!-- <button (click)="updateOrder()" class="btn btn-dark mx-1"><i class="fa fa-check"></i> Update Order</button> -->
+      <button (click)="onBtnExport()" class="btn btn-outline-info mx-1"><i class="fas fa-file-excel"></i> Excel</button>
+    </div>
+    <div class="col-md-8">
+      <div class="float-end">
+        <div class="d-flex gap-1 mt-2">
+          <div> Total Agent <span class="badge bg-success p-2">2</span></div>
+          <div> Complain Assign <span class="badge bg-info p-2">0</span></div>
+          <div> Attendance Submit <span class="badge bg-primary p-2">0</span></div>
+          <div> Not Submit <span class="badge bg-secondary p-2">0</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-lg-12">
+      <ag-grid-angular style="width: 100%; height: 75vh;" class="ag-theme-alpine" [rowData]="lstAgentAttendance"
+        [columnDefs]="columnDefs" [gridOptions]="gridOptions" (selectionChanged)="onSelect()"
+        (gridReady)="onGridReady($event)">
+      </ag-grid-angular>
+    </div>
+  </div>
+</div>

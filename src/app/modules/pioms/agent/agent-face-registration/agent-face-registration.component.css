@@ -1,0 +1,20 @@
+.face-remove {
+    color: #ff0000;
+    background: #ededed;
+    padding: 1px;
+    width: 27px;
+    float: right;
+    position: absolute;
+    right: 0;
+    top: 0;
+    border-radius: 0px 0px 0px 15px;
+    border: 1px solid #556ee6;
+    transition: .3s;
+}
+.face-remove:hover {
+    color: #ffffff;
+    background: #fc0303;
+    border-radius: 0px 0px 0px 15px;
+    border: 1px solid #ffffff00;
+    cursor: pointer;
+}
