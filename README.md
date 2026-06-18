@@ -1,6 +1,3 @@
-# HelloTC_Client
-
-
 
 ## Getting started
 
@@ -15,14 +12,14 @@ Already a pro? Just edit this README.md and make it your own. Want to make it ea
 
 ```
 cd existing_repo
-git remote add origin http://10.1.0.16/swl/hellotc_client.git
+git remote add origin https://github.com/shahin-pradhan-2026/workflowdemo_service.git
 git branch -M main
 git push -uf origin main
 ```
 
 ## Integrate with your tools
 
-- [ ] [Set up project integrations](http://10.1.0.16/swl/hellotc_client/-/settings/integrations)
+- [ ] [Set up project integrations](https://github.com/shahin-pradhan-2026/workflowdemo_service.git/-/settings/integrations)
 
 ## Collaborate with your team
 
