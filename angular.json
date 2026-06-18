@@ -25,7 +25,7 @@
               "ngx-lightbox",
               "crypto-js"
             ],
-            "outputPath": "dist/helloct_client",
+            "outputPath": "dist/wfms_client",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
